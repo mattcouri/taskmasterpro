@@ -9,7 +9,7 @@ interface TimeSlotProps {
   onDragEnd?: (event: DragEndEvent) => void;
 }
 
-export default function TimeSlot({ time, children, onDragEnd }: TimeSlotProps) {
+export default function TimeSlot({ time, children }: TimeSlotProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: `time-${time}`,
   });
