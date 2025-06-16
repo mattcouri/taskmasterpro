@@ -126,6 +126,183 @@ export class MemStorage implements IStorage {
   private async initializeDefaultData() {
     const defaultUser = await this.createUser({ username: "demo", password: "demo" });
     
+    // Add sample meetings for today
+    const today = new Date().toISOString().split('T')[0];
+    const meetings = [
+      {
+        title: "Team Standup",
+        date: today,
+        userId: defaultUser.id,
+        startTime: "09:00",
+        duration: 30,
+        color: "#ff6b9d"
+      },
+      {
+        title: "Project Review",
+        date: today,
+        userId: defaultUser.id,
+        startTime: "14:00",
+        duration: 60,
+        color: "#ff8c42"
+      },
+      {
+        title: "Client Call",
+        date: today,
+        userId: defaultUser.id,
+        startTime: "16:30",
+        duration: 45,
+        color: "#ff6b9d"
+      }
+    ];
+    for (const meeting of meetings) {
+      await this.createMeeting(meeting);
+    }
+
+    // Add sample todos
+    const todos = [
+      {
+        title: "Update Dashboard",
+        userId: defaultUser.id,
+        description: "Redesign the main dashboard with new metrics",
+        priority: "high",
+        estimatedDuration: 120,
+        completed: false,
+        projectId: null,
+        dueDate: today
+      },
+      {
+        title: "Review Code",
+        userId: defaultUser.id,
+        description: "Review pull requests from the team",
+        priority: "medium",
+        estimatedDuration: 60,
+        completed: false,
+        projectId: null,
+        dueDate: today
+      },
+      {
+        title: "Write Documentation",
+        userId: defaultUser.id,
+        description: "Document the new API endpoints",
+        priority: "medium",
+        estimatedDuration: 90,
+        completed: false,
+        projectId: null,
+        dueDate: today
+      },
+      {
+        title: "Test New Features",
+        userId: defaultUser.id,
+        description: "QA testing for the latest release",
+        priority: "high",
+        estimatedDuration: 180,
+        completed: false,
+        projectId: null,
+        dueDate: today
+      }
+    ];
+    for (const todo of todos) {
+      await this.createTodo(todo);
+    }
+
+    // Add sample projects
+    const projects = [
+      {
+        name: "Mobile App",
+        userId: defaultUser.id,
+        color: "#ff6b9d",
+        description: "Development of the mobile application"
+      },
+      {
+        name: "Website Redesign",
+        userId: defaultUser.id,
+        color: "#ff8c42",
+        description: "Complete redesign of the company website"
+      }
+    ];
+    for (const project of projects) {
+      await this.createProject(project);
+    }
+
+    // Add sample goals
+    const goals = [
+      {
+        title: "Learn React Native",
+        userId: defaultUser.id,
+        description: "Master mobile development with React Native",
+        targetValue: 100,
+        currentValue: 35,
+        unit: "hours",
+        category: "skill",
+        startDate: "2025-01-01",
+        targetDate: "2025-06-30",
+        isActive: true
+      },
+      {
+        title: "Daily Exercise",
+        userId: defaultUser.id,
+        description: "Exercise for at least 30 minutes daily",
+        targetValue: 30,
+        currentValue: 15,
+        unit: "days",
+        category: "health",
+        startDate: "2025-06-01",
+        targetDate: "2025-06-30",
+        isActive: true
+      }
+    ];
+    for (const goal of goals) {
+      await this.createGoal(goal);
+    }
+
+    // Add sample financial accounts
+    const accounts = [
+      {
+        name: "Checking Account",
+        type: "checking",
+        userId: defaultUser.id,
+        isActive: true,
+        balance: "5240.50",
+        currency: "USD"
+      },
+      {
+        name: "Savings Account",
+        type: "savings",
+        userId: defaultUser.id,
+        isActive: true,
+        balance: "12850.75",
+        currency: "USD"
+      }
+    ];
+    for (const account of accounts) {
+      await this.createAccount(account);
+    }
+
+    // Add sample transactions
+    const transactions = [
+      {
+        type: "expense",
+        date: today,
+        userId: defaultUser.id,
+        description: "Grocery shopping",
+        category: "Food",
+        accountId: 1,
+        amount: "-125.50"
+      },
+      {
+        type: "income",
+        date: today,
+        userId: defaultUser.id,
+        description: "Freelance project payment",
+        category: "Work",
+        accountId: 1,
+        amount: "2500.00"
+      }
+    ];
+    for (const transaction of transactions) {
+      await this.createTransaction(transaction);
+    }
+    
     // Create default habit legends
     const defaultLegends = [
       { userId: defaultUser.id, iconKey: "completed", label: "Completed", icon: "CheckCircle", color: "#10B981" },
