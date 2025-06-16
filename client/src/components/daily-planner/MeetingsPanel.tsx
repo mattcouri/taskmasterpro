@@ -7,6 +7,7 @@ import type { Meeting } from "@shared/schema";
 
 interface MeetingsPanelProps {
   meetings: Meeting[];
+  isLoading?: boolean;
 }
 
 export default function MeetingsPanel({ meetings }: MeetingsPanelProps) {

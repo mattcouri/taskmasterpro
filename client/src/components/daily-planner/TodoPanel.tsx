@@ -8,6 +8,7 @@ import type { Todo } from "@shared/schema";
 
 interface TodoPanelProps {
   todos: Todo[];
+  isLoading?: boolean;
 }
 
 const getPriorityIcon = (priority: string) => {
@@ -58,7 +59,7 @@ export default function TodoPanel({ todos }: TodoPanelProps) {
             <div className="p-3 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all cursor-grab">
               <div className="flex items-center space-x-3">
                 <Checkbox 
-                  checked={todo.completed}
+                  checked={todo.completed || false}
                   className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                 />
                 <div className="flex-1">

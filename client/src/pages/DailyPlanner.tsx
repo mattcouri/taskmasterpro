@@ -31,17 +31,17 @@ export default function DailyPlanner() {
   const [draggedItem, setDraggedItem] = useState<any>(null);
 
   // Fetch meetings for selected date
-  const { data: meetings = [], isLoading: meetingsLoading } = useQuery({
+  const { data: meetings = [], isLoading: meetingsLoading } = useQuery<Meeting[]>({
     queryKey: ["/api/meetings", selectedDate],
   });
 
   // Fetch todos
-  const { data: todos = [], isLoading: todosLoading } = useQuery({
+  const { data: todos = [], isLoading: todosLoading } = useQuery<Todo[]>({
     queryKey: ["/api/todos"],
   });
 
   // Fetch scheduled items for selected date
-  const { data: scheduledItems = [], isLoading: scheduledLoading } = useQuery({
+  const { data: scheduledItems = [], isLoading: scheduledLoading } = useQuery<ScheduledItem[]>({
     queryKey: ["/api/scheduled-items", selectedDate],
   });
 

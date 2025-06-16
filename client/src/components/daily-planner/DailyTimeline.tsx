@@ -10,13 +10,16 @@ import type { ScheduledItem as ScheduledItemType } from "@shared/schema";
 
 interface DailyTimelineProps {
   scheduledItems: ScheduledItemType[];
-  onDragEnd: (event: DragEndEvent) => void;
+  selectedDate: string;
+  draggedItem?: any;
   onUpdateItem: (id: number, data: Partial<ScheduledItemType>) => void;
+  isLoading?: boolean;
 }
 
 export default function DailyTimeline({ 
   scheduledItems, 
-  onDragEnd, 
+  selectedDate,
+  draggedItem,
   onUpdateItem 
 }: DailyTimelineProps) {
   const timeSlots = getTimeSlots();
@@ -55,7 +58,6 @@ export default function DailyTimeline({
                     <TimeSlot 
                       key={time} 
                       time={time}
-                      onDragEnd={onDragEnd}
                     >
                       {items.map((item) => (
                         <ScheduledItem
