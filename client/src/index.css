@@ -152,11 +152,11 @@
   }
   
   .drop-zone.drag-over {
-    @apply bg-primary/10 border-2 border-dashed border-primary;
+    @apply bg-primary bg-opacity-10 border-2 border-dashed border-primary;
   }
   
   .time-slot {
-    @apply min-h-[60px] border-b border-border/20;
+    @apply min-h-[60px] border-b border-border border-opacity-20;
   }
   
   .scheduled-item {
@@ -172,7 +172,7 @@
   }
   
   .nav-link.active {
-    @apply bg-primary/10 text-primary;
+    @apply bg-primary bg-opacity-10 text-primary;
   }
 }
 
@@ -236,7 +236,7 @@
 
 /* Smooth focus styles */
 *:focus {
-  @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background;
+  @apply outline-none ring-2 ring-primary ring-opacity-50 ring-offset-2 ring-offset-background;
 }
 
 /* Button hover effects */
