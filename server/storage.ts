@@ -458,7 +458,14 @@ export class MemStorage implements IStorage {
 
   async createFinancialGoal(insertGoal: InsertFinancialGoal): Promise<FinancialGoal> {
     const id = this.currentId++;
-    const goal: FinancialGoal = { ...insertGoal, id };
+    const goal: FinancialGoal = { 
+      ...insertGoal, 
+      id,
+      targetDate: insertGoal.targetDate ?? null,
+      isActive: insertGoal.isActive ?? null,
+      currentAmount: insertGoal.currentAmount ?? null,
+      weeklyAllocation: insertGoal.weeklyAllocation ?? null
+    };
     this.financialGoals.set(id, goal);
     return goal;
   }
@@ -487,7 +494,16 @@ export class MemStorage implements IStorage {
 
   async createHealthScore(insertScore: InsertHealthScore): Promise<HealthScore> {
     const id = this.currentId++;
-    const score: HealthScore = { ...insertScore, id };
+    const score: HealthScore = { 
+      ...insertScore, 
+      id,
+      notes: insertScore.notes ?? null,
+      spiritualScore: insertScore.spiritualScore ?? null,
+      mentalScore: insertScore.mentalScore ?? null,
+      socialScore: insertScore.socialScore ?? null,
+      physicalScore: insertScore.physicalScore ?? null,
+      financialScore: insertScore.financialScore ?? null
+    };
     this.healthScores.set(id, score);
     return score;
   }
