@@ -162,7 +162,11 @@ export class MemStorage implements IStorage {
 
   async createMeeting(insertMeeting: InsertMeeting): Promise<Meeting> {
     const id = this.currentId++;
-    const meeting: Meeting = { ...insertMeeting, id };
+    const meeting: Meeting = { 
+      ...insertMeeting, 
+      id,
+      color: insertMeeting.color ?? null
+    };
     this.meetings.set(id, meeting);
     return meeting;
   }
@@ -191,7 +195,17 @@ export class MemStorage implements IStorage {
 
   async createTodo(insertTodo: InsertTodo): Promise<Todo> {
     const id = this.currentId++;
-    const todo: Todo = { ...insertTodo, id, createdAt: new Date() };
+    const todo: Todo = { 
+      ...insertTodo, 
+      id, 
+      createdAt: new Date(),
+      description: insertTodo.description ?? null,
+      priority: insertTodo.priority ?? "medium",
+      estimatedDuration: insertTodo.estimatedDuration ?? null,
+      completed: insertTodo.completed ?? null,
+      projectId: insertTodo.projectId ?? null,
+      dueDate: insertTodo.dueDate ?? null
+    };
     this.todos.set(id, todo);
     return todo;
   }
@@ -214,7 +228,12 @@ export class MemStorage implements IStorage {
 
   async createProject(insertProject: InsertProject): Promise<Project> {
     const id = this.currentId++;
-    const project: Project = { ...insertProject, id };
+    const project: Project = { 
+      ...insertProject, 
+      id,
+      color: insertProject.color ?? null,
+      description: insertProject.description ?? null
+    };
     this.projects.set(id, project);
     return project;
   }
@@ -239,7 +258,12 @@ export class MemStorage implements IStorage {
 
   async createScheduledItem(insertItem: InsertScheduledItem): Promise<ScheduledItem> {
     const id = this.currentId++;
-    const item: ScheduledItem = { ...insertItem, id };
+    const item: ScheduledItem = { 
+      ...insertItem, 
+      id,
+      color: insertItem.color ?? null,
+      originalId: insertItem.originalId ?? null
+    };
     this.scheduledItems.set(id, item);
     return item;
   }
@@ -266,7 +290,11 @@ export class MemStorage implements IStorage {
       ...insertPassword, 
       id, 
       createdAt: new Date(), 
-      updatedAt: new Date() 
+      updatedAt: new Date(),
+      url: insertPassword.url ?? null,
+      username: insertPassword.username ?? null,
+      email: insertPassword.email ?? null,
+      notes: insertPassword.notes ?? null
     };
     this.passwords.set(id, password);
     return password;
@@ -290,7 +318,16 @@ export class MemStorage implements IStorage {
 
   async createGoal(insertGoal: InsertGoal): Promise<Goal> {
     const id = this.currentId++;
-    const goal: Goal = { ...insertGoal, id };
+    const goal: Goal = { 
+      ...insertGoal, 
+      id,
+      description: insertGoal.description ?? null,
+      targetValue: insertGoal.targetValue ?? null,
+      currentValue: insertGoal.currentValue ?? null,
+      unit: insertGoal.unit ?? null,
+      targetDate: insertGoal.targetDate ?? null,
+      isActive: insertGoal.isActive ?? null
+    };
     this.goals.set(id, goal);
     return goal;
   }
@@ -360,7 +397,13 @@ export class MemStorage implements IStorage {
 
   async createAccount(insertAccount: InsertAccount): Promise<Account> {
     const id = this.currentId++;
-    const account: Account = { ...insertAccount, id };
+    const account: Account = { 
+      ...insertAccount, 
+      id,
+      isActive: insertAccount.isActive ?? null,
+      balance: insertAccount.balance ?? "0.00",
+      currency: insertAccount.currency ?? null
+    };
     this.accounts.set(id, account);
     return account;
   }
@@ -387,7 +430,12 @@ export class MemStorage implements IStorage {
 
   async createTransaction(insertTransaction: InsertTransaction): Promise<Transaction> {
     const id = this.currentId++;
-    const transaction: Transaction = { ...insertTransaction, id, createdAt: new Date() };
+    const transaction: Transaction = { 
+      ...insertTransaction, 
+      id, 
+      createdAt: new Date(),
+      description: insertTransaction.description ?? null
+    };
     this.transactions.set(id, transaction);
     return transaction;
   }
